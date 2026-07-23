@@ -1,0 +1,198 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Profil Desa">
+  <!-- Header Profil -->
+  <section
+    class="bg-gradient-to-r from-emerald-800 to-emerald-600 rounded-3xl p-8 sm:p-12 mb-12 text-center text-white shadow-lg"
+  >
+    <h1 class="text-3xl sm:text-5xl font-extrabold mb-4">
+      Profil Desa Muncangkopong
+    </h1>
+    <p
+      class="text-emerald-100 text-base sm:text-lg max-w-2xl mx-auto font-light"
+    >
+      Mengenal lebih dekat sejarah, visi, misi, dan struktur pemerintahan Desa
+      Muncangkopong.
+    </p>
+  </section>
+
+  <!-- Konten Utama Profil -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+    <!-- KOLOM KIRI (Sejarah & Visi Misi - Porsi Lebih Lebar) -->
+    <div class="lg:col-span-2 space-y-8">
+      <!-- Bagian Sejarah -->
+      <section
+        class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition"
+      >
+        <h2
+          class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3"
+        >
+          <span class="text-2xl">📖</span> Sejarah Desa
+        </h2>
+        <div class="text-gray-700 leading-relaxed space-y-4 text-justify">
+          <p>
+            Desa Muncangkopong adalah salah satu desa yang memiliki ikatan kuat
+            dengan nilai budaya dan kearifan lokal. Nama "Muncangkopong" sendiri
+            memiliki sejarah panjang yang diwariskan secara turun-temurun,
+            menggambarkan karakteristik wilayah yang agraris, subur, dan damai.
+          </p>
+          <p>
+            Seiring berjalannya waktu, Desa Muncangkopong terus tumbuh dan
+            berkembang menjadi desa yang mandiri. Dengan mayoritas penduduk
+            bermata pencaharian di sektor pertanian dan wirausaha lokal,
+            masyarakat desa ini sangat memprioritaskan semangat gotong royong,
+            toleransi, dan kerukunan antar warga sebagai fondasi utama dalam
+            kehidupan bermasyarakat sehari-hari.
+          </p>
+        </div>
+      </section>
+
+      <!-- Bagian Visi & Misi -->
+      <section
+        class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition"
+      >
+        <h2
+          class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3"
+        >
+          <span class="text-2xl">🎯</span> Visi & Misi
+        </h2>
+
+        <div class="mb-8">
+          <h3
+            class="text-lg font-bold text-emerald-700 mb-3 uppercase tracking-wide"
+          >
+            Visi
+          </h3>
+          <p
+            class="text-gray-800 text-lg font-medium italic border-l-4 border-emerald-500 pl-5 py-3 bg-emerald-50 rounded-r-xl"
+          >
+            "Terwujudnya Desa Muncangkopong yang Mandiri, Sejahtera, Agamis, dan
+            Berbudaya melalui Tata Kelola Pemerintahan yang Bersih dan
+            Inovatif."
+          </p>
+        </div>
+
+        <div>
+          <h3
+            class="text-lg font-bold text-emerald-700 mb-3 uppercase tracking-wide"
+          >
+            Misi
+          </h3>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="text-emerald-500 font-bold mt-0.5">1.</span>
+              Meningkatkan kualitas sumber daya manusia melalui pemerataan pendidikan
+              dan kesehatan.
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-emerald-500 font-bold mt-0.5">2.</span>
+              Mewujudkan tata kelola pemerintahan desa yang transparan, akuntabel,
+              dan responsif.
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-emerald-500 font-bold mt-0.5">3.</span>
+              Mendorong perekonomian warga melalui pemberdayaan UMKM dan optimalisasi
+              sektor pertanian.
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-emerald-500 font-bold mt-0.5">4.</span>
+              Memelihara serta melestarikan nilai-nilai agama, sosial, dan budaya
+              masyarakat lokal.
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-emerald-500 font-bold mt-0.5">5.</span>
+              Membangun dan meningkatkan infrastruktur desa yang memadai untuk kemudahan
+              akses warga.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- KOLOM KANAN (Struktur Pemerintahan & Peta) -->
+    <div class="space-y-8">
+      <!-- Struktur Aparatur Desa -->
+      <section
+        class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition"
+      >
+        <h2
+          class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3"
+        >
+          <span class="text-2xl">🏢</span> Aparatur Desa
+        </h2>
+
+        <div class="space-y-4">
+          <!-- Card Kades -->
+          <div
+            class="bg-emerald-50 p-4 rounded-xl border border-emerald-100 text-center shadow-sm"
+          >
+            <div class="font-bold text-gray-900 text-lg">
+              [Nama Kepala Desa]
+            </div>
+            <div
+              class="text-sm text-emerald-700 font-semibold uppercase tracking-wider mt-1"
+            >
+              Kepala Desa
+            </div>
+          </div>
+
+          <!-- Card Sekdes -->
+          <div
+            class="bg-gray-50 p-4 rounded-xl border border-gray-100 text-center hover:bg-white transition"
+          >
+            <div class="font-bold text-gray-900">[Nama Sekretaris]</div>
+            <div class="text-sm text-gray-500 font-medium mt-1">
+              Sekretaris Desa
+            </div>
+          </div>
+
+          <!-- Card Kaur -->
+          <div
+            class="bg-gray-50 p-4 rounded-xl border border-gray-100 text-center hover:bg-white transition"
+          >
+            <div class="font-bold text-gray-900">[Nama Staf/Kaur]</div>
+            <div class="text-sm text-gray-500 font-medium mt-1">
+              Kaur Pemerintahan
+            </div>
+          </div>
+
+          <div
+            class="bg-gray-50 p-4 rounded-xl border border-gray-100 text-center hover:bg-white transition"
+          >
+            <div class="font-bold text-gray-900">[Nama Staf/Kaur]</div>
+            <div class="text-sm text-gray-500 font-medium mt-1">
+              Kaur Keuangan
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-center text-gray-400 mt-6 italic">
+          *Nama aparatur dapat disesuaikan kembali melalui dashboard admin.
+        </p>
+      </section>
+
+      <!-- Informasi Demografi/Lokasi -->
+      <section
+        class="bg-emerald-800 p-8 rounded-2xl shadow-sm text-white hover:shadow-md transition"
+      >
+        <h2 class="text-xl font-bold mb-4 flex items-center gap-3">
+          <span class="text-2xl">📍</span> Lokasi Desa
+        </h2>
+        <div
+          class="w-full h-40 bg-emerald-900/50 rounded-xl flex items-center justify-center text-emerald-200 border border-emerald-700/50 mb-4"
+        >
+          <span class="text-sm text-center px-4">
+            (Bisa disisipkan embed Google Maps di sini nantinya)
+          </span>
+        </div>
+        <p class="text-emerald-100 text-sm leading-relaxed">
+          <strong>Alamat Kantor Desa:</strong><br />
+          Jl. Raya Muncangkopong No. 1, Desa Muncangkopong, <br />
+          Kecamatan Cikulur, Kabupaten Lebak, Banten.
+        </p>
+      </section>
+    </div>
+  </div>
+</Layout>

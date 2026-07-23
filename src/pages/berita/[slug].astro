@@ -1,0 +1,58 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const beritaEntries = await getCollection("berita");
+  return beritaEntries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title}>
+  <article
+    class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-gray-100 my-6"
+  >
+    <!-- Tombol Kembali -->
+    <a
+      href="/berita"
+      class="inline-flex items-center text-sm font-semibold text-emerald-600 hover:underline mb-6 gap-1"
+    >
+      &larr; Kembali ke Daftar Berita
+    </a>
+
+    <!-- Judul Berita -->
+    <h1 class="text-3xl font-extrabold mb-3 text-gray-900 leading-tight">
+      {entry.data.title}
+    </h1>
+
+    <!-- Meta Berita -->
+    <div class="text-sm text-gray-500 mb-6 pb-4 border-b border-gray-100">
+      Diterbitkan pada {new Date(entry.data.date).toLocaleDateString("id-ID")} oleh{
+        " "
+      }
+      <span class="font-semibold text-emerald-700">{entry.data.author}</span>
+    </div>
+
+    <!-- Gambar Berita -->
+    {
+      entry.data.image && (
+        <img
+          src={entry.data.image}
+          alt={entry.data.title}
+          class="w-full h-80 object-cover rounded-xl mb-6 shadow-sm"
+        />
+      )
+    }
+
+    <!-- Isi Konten Berita -->
+    <div class="text-gray-700 leading-relaxed text-base space-y-4">
+      <Content />
+    </div>
+  </article>
+</Layout>
