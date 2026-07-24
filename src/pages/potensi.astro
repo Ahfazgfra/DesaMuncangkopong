@@ -51,16 +51,18 @@ const umkmDesa = [
 ];
 
 const galeriKegiatan = [
-  "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=500",
-  "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=500",
-  "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=500",
-  "https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?auto=format&fit=crop&q=80&w=500"
+  { judul: "Kerja Bakti Membersihkan Jalan Desa", gambar: "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=800" },
+  { judul: "Pembibitan Tanaman oleh Ibu-ibu PKK", gambar: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800" },
+  { judul: "Keceriaan Anak-Anak Desa Bermain", gambar: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=800" },
+  { judul: "Suasana Jalan Desa di Malam Hari", gambar: "https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?auto=format&fit=crop&q=80&w=800" },
+  { judul: "Gotong Royong Perbaikan Balai Desa", gambar: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=800" },
+  { judul: "Kegiatan Posyandu Bulanan", gambar: "https://images.unsplash.com/photo-1574607383476-f517f260d30b?auto=format&fit=crop&q=80&w=800" }
 ];
 ---
 
 <Layout title="Potensi & Galeri">
   <!-- Hero Banner -->
-  <section class="bg-gradient-to-r from-emerald-800 to-emerald-600 rounded-3xl p-8 sm:p-12 mb-12 text-center text-white shadow-lg">
+  <section class="bg-linear-to-r from-emerald-800 to-emerald-600 rounded-3xl p-8 sm:p-12 mb-12 text-center text-white shadow-lg">
     <h1 class="text-3xl sm:text-5xl font-extrabold mb-4">Potensi & Galeri Desa</h1>
     <p class="text-emerald-100 text-base sm:text-lg max-w-2xl mx-auto font-light">
       Membangun ekonomi kreatif melalui produk UMKM unggulan dan merekam jejak kegiatan masyarakat Desa Muncangkopong.
@@ -130,7 +132,7 @@ const galeriKegiatan = [
   <!-- KUMPULAN MODAL POP-UP (Tersembunyi di awal) -->
   <!-- ========================================== -->
   {umkmDesa.map((item) => (
-    <div id={`modal-${item.id}`} class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300">
+    <div id={`modal-${item.id}`} class="fixed inset-0 z-100 hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300">
       <!-- Latar Belakang Gelap (Backdrop) -->
       <div class="absolute inset-0 bg-black/70 backdrop-blur-sm cursor-pointer" onclick={`tutupModal('${item.id}')`}></div>
       
@@ -161,7 +163,7 @@ const galeriKegiatan = [
               <img 
                 src={imgSrc} 
                 alt="Thumbnail" 
-                class="w-20 h-20 object-cover rounded-xl border-2 border-transparent hover:border-emerald-500 cursor-pointer opacity-70 hover:opacity-100 transition shadow-sm flex-shrink-0"
+                class="w-20 h-20 object-cover rounded-xl border-2 border-transparent hover:border-emerald-500 cursor-pointer opacity-70 hover:opacity-100 transition shadow-sm shrink-0"
                 onclick={`document.getElementById('main-img-${item.id}').src = '${imgSrc}'`}
               />
             ))}
@@ -213,23 +215,67 @@ const galeriKegiatan = [
         <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">📸 Galeri Kegiatan Warga</h2>
         <p class="text-gray-600 text-sm">Dokumentasi gotong royong, pembangunan, dan acara kebudayaan desa.</p>
       </div>
+      <!-- Tombol Navigasi Slider Kiri & Kanan -->
+      <div class="flex gap-2">
+        <button onclick="geserGaleri(-1)" class="bg-gray-100 hover:bg-emerald-100 text-gray-700 hover:text-emerald-700 w-12 h-12 rounded-full flex items-center justify-center transition shadow-sm">
+          <span class="text-xl font-bold">&larr;</span>
+        </button>
+        <button onclick="geserGaleri(1)" class="bg-gray-100 hover:bg-emerald-100 text-gray-700 hover:text-emerald-700 w-12 h-12 rounded-full flex items-center justify-center transition shadow-sm">
+          <span class="text-xl font-bold">&rarr;</span>
+        </button>
+      </div>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      {galeriKegiatan.map((imgUrl, index) => (
-        <div class="group relative overflow-hidden rounded-2xl aspect-square bg-gray-100">
+    <!-- Wadah Slider (Bisa di-swipe di HP, diklik tombol di PC) -->
+    <div 
+      id="slider-galeri" 
+      class="flex overflow-x-auto gap-5 snap-x snap-mandatory scroll-smooth pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-width:none"
+    >
+      {galeriKegiatan.map((item) => (
+        <div 
+          class="snap-start shrink-0 w-70 sm:w-[320px] group relative overflow-hidden rounded-2xl aspect-4/3 bg-gray-200 cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
+          onclick={`bukaFotoBesar('${item.gambar}', '${item.judul}')`}
+        >
           <img
-            src={imgUrl}
-            alt={`Galeri Kegiatan ${index + 1}`}
-            class="w-full h-full object-cover group-hover:scale-110 transition duration-300 ease-in-out"
+            src={item.gambar}
+            alt={item.judul}
+            class="w-full h-full object-cover group-hover:scale-110 transition duration-500 ease-in-out"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-            <span class="text-white text-xs font-medium">Kegiatan Desa #{index + 1}</span>
+          <!-- Gradasi Hitam dan Judul (Muncul saat di-hover) -->
+          <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-5">
+            <span class="text-white text-base font-bold leading-tight mb-1">{item.judul}</span>
+            <span class="text-emerald-300 text-xs font-medium">Lihat Foto &rarr;</span>
+          </div>
+          <!-- Ikon Kaca Pembesar di Kanan Atas -->
+          <div class="absolute top-4 right-4 bg-black/30 backdrop-blur-md w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+            <span class="text-white text-sm">🔍</span>
           </div>
         </div>
       ))}
     </div>
   </section>
+
+  <!-- POP-UP (LIGHTBOX) KHUSUS UNTUK GALERI -->
+  <div id="lightbox-galeri" class="fixed inset-0 z-200 hidden items-center justify-center p-4 sm:p-8 opacity-0 transition-opacity duration-300">
+    <!-- Latar Hitam Blur -->
+    <div class="absolute inset-0 bg-black/95 backdrop-blur-md cursor-pointer" onclick="tutupFotoBesar()"></div>
+    
+    <!-- Tombol Tutup (X) -->
+    <button 
+      onclick="tutupFotoBesar()"
+      class="absolute top-4 right-4 md:top-8 md:right-8 z-10 bg-white/10 hover:bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-md transition shadow-lg"
+    >
+      <span class="text-2xl font-bold">&times;</span>
+    </button>
+
+    <!-- Konten Foto Besar -->
+    <div class="relative z-10 max-w-5xl w-full flex flex-col items-center scale-95 transition-transform duration-300" id="lightbox-content">
+      <img id="lightbox-img" src="" alt="Detail Kegiatan" class="max-w-full max-h-[75vh] rounded-xl shadow-2xl object-contain border border-gray-700/50" />
+      <div class="bg-black/50 backdrop-blur-md px-6 py-3 rounded-full mt-6 border border-gray-700">
+        <p id="lightbox-caption" class="text-white text-base md:text-xl font-medium text-center"></p>
+      </div>
+    </div>
+  </div>
 
 </Layout>
 
@@ -270,6 +316,54 @@ const galeriKegiatan = [
       modal.classList.add('hidden');
       modal.classList.remove('flex');
       // Kembalikan scroll body website
+      document.body.style.overflow = 'auto';
+    }, 300);
+  }
+
+  function geserGaleri(arah) {
+    const slider = document.getElementById('slider-galeri');
+    // Bergeser sejauh 340px (lebar 1 gambar + gap)
+    const jarakGeser = 340 * arah;
+    slider.scrollBy({ left: jarakGeser, behavior: 'smooth' });
+  }
+
+  // --- FUNGSI UNTUK LIGHTBOX (POP-UP FOTO GALERI) ---
+  function bukaFotoBesar(src, judul) {
+    const lightbox = document.getElementById('lightbox-galeri');
+    const lightboxContent = document.getElementById('lightbox-content');
+    const img = document.getElementById('lightbox-img');
+    const caption = document.getElementById('lightbox-caption');
+
+    // Masukkan data gambar dan judul yang diklik
+    img.src = src;
+    caption.textContent = judul;
+
+    // Tampilkan pop-up
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+
+    // Animasi masuk
+    setTimeout(() => {
+      lightbox.classList.remove('opacity-0');
+      lightboxContent.classList.remove('scale-95');
+      lightboxContent.classList.add('scale-100');
+    }, 10);
+  }
+
+  function tutupFotoBesar() {
+    const lightbox = document.getElementById('lightbox-galeri');
+    const lightboxContent = document.getElementById('lightbox-content');
+
+    // Animasi keluar
+    lightbox.classList.add('opacity-0');
+    lightboxContent.classList.remove('scale-100');
+    lightboxContent.classList.add('scale-95');
+
+    // Sembunyikan setelah animasi selesai
+    setTimeout(() => {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
       document.body.style.overflow = 'auto';
     }, 300);
   }
