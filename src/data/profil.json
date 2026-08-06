@@ -1,0 +1,32 @@
+{
+  "sejarah": "Desa Muncangkopong adalah salah satu desa yang memiliki ikatan kuat dengan nilai budaya dan kearifan lokal. Nama \"Muncangkopong\" sendiri memiliki sejarah panjang yang diwariskan secara turun-temurun, menggambarkan karakteristik wilayah yang agraris, subur, dan damai.\n\nSeiring berjalannya waktu, Desa Muncangkopong terus tumbuh dan berkembang menjadi desa yang mandiri.",
+  "visi": "Terwujudnya Desa Muncangkopong yang Mandiri, Sejahtera, Agamis, dan Berbudaya melalui Tata Kelola Pemerintahan yang Bersih dan Inovatif.",
+  "misi": [
+    {
+      "teks": "Meningkatkan kualitas sumber daya manusia melalui pemerataan pendidikan dan kesehatan."
+    },
+    {
+      "teks": "Mewujudkan tata kelola pemerintahan desa yang transparan, akuntabel, dan bebas korupsi."
+    }
+  ],
+  "aparatur": [
+    {
+      "nama": "M AHFAZ GAFARA S, S.T",
+      "jabatan": "Kepala Desa"
+    },
+    {
+      "nama": "[Nama Sekretaris]",
+      "jabatan": "Sekretaris Desa"
+    },
+    {
+      "nama": "[Nama Staf/Kaur]",
+      "jabatan": "Kaur Pemerintahan"
+    },
+    {
+      "nama": "[Nama Staf/Kaur]",
+      "jabatan": "Kaur Keuangan"
+    }
+  ],
+  "peta_embed": "/images/uploads/petadesa.jpeg",
+  "alamat": "Jl. Raya Muncangkopong No. 1, Desa Muncangkopong, Kecamatan Cikulur, Kabupaten Lebak, Banten."
+}

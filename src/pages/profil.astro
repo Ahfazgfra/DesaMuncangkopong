@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import dataProfil from "../data/profil.json";
 ---
 
 <Layout title="Profil Desa">
@@ -18,9 +19,9 @@ import Layout from "../layouts/Layout.astro";
     </p>
   </section>
 
-  <!-- Konten Utama Profil -->
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-    <!-- KOLOM KIRI (Sejarah & Visi Misi - Porsi Lebih Lebar) -->
+  <!-- Konten Utama Profil (Grid 3 Kolom: 2 untuk Kiri, 1 untuk Kanan) -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 items-start">
+    <!-- KOLOM KIRI (Sejarah & Visi Misi - Porsi Lebih Lebar / 2 Kolom) -->
     <div class="lg:col-span-2 space-y-8">
       <!-- Bagian Sejarah -->
       <section
@@ -32,19 +33,8 @@ import Layout from "../layouts/Layout.astro";
           <span class="text-2xl">📖</span> Sejarah Desa
         </h2>
         <div class="text-gray-700 leading-relaxed space-y-4 text-justify">
-          <p>
-            Desa Muncangkopong adalah salah satu desa yang memiliki ikatan kuat
-            dengan nilai budaya dan kearifan lokal. Nama "Muncangkopong" sendiri
-            memiliki sejarah panjang yang diwariskan secara turun-temurun,
-            menggambarkan karakteristik wilayah yang agraris, subur, dan damai.
-          </p>
-          <p>
-            Seiring berjalannya waktu, Desa Muncangkopong terus tumbuh dan
-            berkembang menjadi desa yang mandiri. Dengan mayoritas penduduk
-            bermata pencaharian di sektor pertanian dan wirausaha lokal,
-            masyarakat desa ini sangat memprioritaskan semangat gotong royong,
-            toleransi, dan kerukunan antar warga sebagai fondasi utama dalam
-            kehidupan bermasyarakat sehari-hari.
+          <p class="text-gray-600 leading-relaxed whitespace-pre-line">
+            {dataProfil.sejarah}
           </p>
         </div>
       </section>
@@ -65,12 +55,8 @@ import Layout from "../layouts/Layout.astro";
           >
             Visi
           </h3>
-          <p
-            class="text-gray-800 text-lg font-medium italic border-l-4 border-emerald-500 pl-5 py-3 bg-emerald-50 rounded-r-xl"
-          >
-            "Terwujudnya Desa Muncangkopong yang Mandiri, Sejahtera, Agamis, dan
-            Berbudaya melalui Tata Kelola Pemerintahan yang Bersih dan
-            Inovatif."
+          <p class="text-gray-700 italic font-medium">
+            "{dataProfil.visi}"
           </p>
         </div>
 
@@ -80,119 +66,110 @@ import Layout from "../layouts/Layout.astro";
           >
             Misi
           </h3>
-          <ul class="space-y-3 text-gray-700">
-            <li class="flex items-start gap-3">
-              <span class="text-emerald-500 font-bold mt-0.5">1.</span>
-              Meningkatkan kualitas sumber daya manusia melalui pemerataan pendidikan
-              dan kesehatan.
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-emerald-500 font-bold mt-0.5">2.</span>
-              Mewujudkan tata kelola pemerintahan desa yang transparan, akuntabel,
-              dan responsif.
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-emerald-500 font-bold mt-0.5">3.</span>
-              Mendorong perekonomian warga melalui pemberdayaan UMKM dan optimalisasi
-              sektor pertanian.
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-emerald-500 font-bold mt-0.5">4.</span>
-              Memelihara serta melestarikan nilai-nilai agama, sosial, dan budaya
-              masyarakat lokal.
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-emerald-500 font-bold mt-0.5">5.</span>
-              Membangun dan meningkatkan infrastruktur desa yang memadai untuk kemudahan
-              akses warga.
-            </li>
-          </ul>
+          <ol class="list-decimal list-inside text-gray-600 space-y-2">
+            {dataProfil.misi.map((item) => <li>{item.teks}</li>)}
+          </ol>
         </div>
       </section>
     </div>
 
-    <!-- KOLOM KANAN (Struktur Pemerintahan & Peta) -->
+    <!-- KOLOM KANAN (Struktur Pemerintahan & Peta Desa) -->
     <div class="space-y-8">
-      <!-- Struktur Aparatur Desa -->
-      <section
-        class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition"
+      <!-- Kotak Aparatur Desa -->
+      <div
+        class="bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-sm"
       >
-        <h2
-          class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3"
-        >
-          <span class="text-2xl">🏢</span> Aparatur Desa
-        </h2>
-
-        <div class="space-y-4">
-          <!-- Card Kades -->
-          <div
-            class="bg-emerald-50 p-4 rounded-xl border border-emerald-100 text-center shadow-sm"
-          >
-            <div class="font-bold text-gray-900 text-lg">
-              [Nama Kepala Desa]
-            </div>
-            <div
-              class="text-sm text-emerald-700 font-semibold uppercase tracking-wider mt-1"
-            >
-              Kepala Desa
-            </div>
-          </div>
-
-          <!-- Card Sekdes -->
-          <div
-            class="bg-gray-50 p-4 rounded-xl border border-gray-100 text-center hover:bg-white transition"
-          >
-            <div class="font-bold text-gray-900">[Nama Sekretaris]</div>
-            <div class="text-sm text-gray-500 font-medium mt-1">
-              Sekretaris Desa
-            </div>
-          </div>
-
-          <!-- Card Kaur -->
-          <div
-            class="bg-gray-50 p-4 rounded-xl border border-gray-100 text-center hover:bg-white transition"
-          >
-            <div class="font-bold text-gray-900">[Nama Staf/Kaur]</div>
-            <div class="text-sm text-gray-500 font-medium mt-1">
-              Kaur Pemerintahan
-            </div>
-          </div>
-
-          <div
-            class="bg-gray-50 p-4 rounded-xl border border-gray-100 text-center hover:bg-white transition"
-          >
-            <div class="font-bold text-gray-900">[Nama Staf/Kaur]</div>
-            <div class="text-sm text-gray-500 font-medium mt-1">
-              Kaur Keuangan
-            </div>
-          </div>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-2xl">🏢</span>
+          <h3 class="text-xl font-bold text-gray-900">Aparatur Desa</h3>
         </div>
 
+        <div class="grid gap-4">
+          {
+            dataProfil.aparatur.map((orang) => (
+              <div class="bg-emerald-50/60 border border-emerald-100/80 p-4 rounded-2xl text-center hover:bg-emerald-50 transition">
+                <h4 class="font-bold text-gray-900">{orang.nama}</h4>
+                <p class="text-xs text-emerald-600 font-bold uppercase tracking-wider mt-1">
+                  {orang.jabatan}
+                </p>
+              </div>
+            ))
+          }
+        </div>
         <p class="text-xs text-center text-gray-400 mt-6 italic">
           *Nama aparatur dapat disesuaikan kembali melalui dashboard admin.
         </p>
-      </section>
+      </div>
 
-      <!-- Informasi Demografi/Lokasi -->
-      <section
-        class="bg-emerald-800 p-8 rounded-2xl shadow-sm text-white hover:shadow-md transition"
-      >
-        <h2 class="text-xl font-bold mb-4 flex items-center gap-3">
-          <span class="text-2xl">📍</span> Lokasi Desa
-        </h2>
-        <div
-          class="w-full h-40 bg-emerald-900/50 rounded-xl flex items-center justify-center text-emerald-200 border border-emerald-700/50 mb-4"
-        >
-          <span class="text-sm text-center px-4">
-            (Bisa disisipkan embed Google Maps di sini nantinya)
-          </span>
+      <!-- Kotak Peta Desa (Kecil, Rapi, & Bisa Diklik) -->
+      <div class="bg-emerald-900 rounded-3xl p-6 text-white shadow-xl">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-xl">📍</span>
+          <h3 class="text-lg font-bold">Peta Wilayah Desa</h3>
         </div>
-        <p class="text-emerald-100 text-sm leading-relaxed">
-          <strong>Alamat Kantor Desa:</strong><br />
-          Jl. Raya Muncangkopong No. 1, Desa Muncangkopong, <br />
-          Kecamatan Cikulur, Kabupaten Lebak, Banten.
+
+        <!-- Gambar Peta (Klik untuk memperbesar) -->
+        <div
+          class="relative group cursor-pointer overflow-hidden rounded-2xl border border-emerald-700/50 bg-emerald-950 aspect-4/3"
+          onclick="document.getElementById('modal-peta').classList.remove('hidden')"
+        >
+          <img
+            src={dataProfil.peta_embed}
+            alt="Peta Desa Muncangkopong"
+            class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+          />
+          <div
+            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-xs font-semibold gap-1 text-white"
+          >
+            🔍 Klik untuk Perbesar
+          </div>
+        </div>
+
+        <p class="text-xs text-emerald-200/80 mt-3 text-center">
+          Klik pada gambar untuk melihat detail.
         </p>
-      </section>
+
+        <!-- Alamat Kantor Desa -->
+        <div class="mt-6 pt-4 border-t border-emerald-700/50">
+          <h4 class="font-bold text-emerald-300 text-sm mb-1">
+            Alamat Kantor Desa:
+          </h4>
+          <p class="text-emerald-100 text-xs sm:text-sm leading-relaxed">
+            {dataProfil.alamat}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ZOOM PETA (POPUP FULLSCREEN) -->
+  <div
+    id="modal-peta"
+    class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    onclick="this.classList.add('hidden')"
+  >
+    <div
+      class="relative max-w-5xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl p-2"
+      onclick="event.stopPropagation()"
+    >
+      <div class="flex justify-between items-center px-4 py-2 border-b">
+        <h3 class="font-bold text-gray-900">Peta Wilayah Desa Muncangkopong</h3>
+        <button
+          onclick="document.getElementById('modal-peta').classList.add('hidden')"
+          class="text-gray-500 hover:text-red-600 font-bold text-xl px-2"
+        >
+          &times;
+        </button>
+      </div>
+      <div
+        class="p-2 max-h-[80vh] overflow-auto flex justify-center bg-gray-50 rounded-b-2xl"
+      >
+        <img
+          src={dataProfil.peta_embed}
+          alt="Peta Desa Full"
+          class="max-w-full h-auto object-contain rounded-xl shadow-md"
+        />
+      </div>
     </div>
   </div>
 </Layout>

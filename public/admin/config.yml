@@ -79,3 +79,55 @@ collections:
                   widget: "string",
                   default: "Keterangan Baru",
                 }
+
+      - label: "Beranda (Sambutan Kades)"
+        name: "beranda"
+        file: "src/data/beranda.json"
+        description: "Atur foto dan teks sambutan Kepala Desa di Halaman Utama"
+        fields:
+          - { label: "Nama Kepala Desa", name: "nama_kades", widget: "string" }
+          - {
+              label: "Jabatan",
+              name: "jabatan",
+              widget: "string",
+              default: "Kepala Desa Muncangkopong",
+            }
+          - {
+              label: "Foto Kepala Desa",
+              name: "foto_kades",
+              widget: "image",
+              required: false,
+            }
+          - { label: "Teks Sambutan", name: "sambutan", widget: "text" }
+
+      - label: "Profil & Sejarah Desa"
+        name: "profil"
+        file: "src/data/profil.json"
+        description: "Atur Sejarah, Visi, Misi, dan Daftar Aparatur Desa"
+        fields:
+          - {
+              label: "Sejarah Desa",
+              name: "sejarah",
+              widget: "text",
+              hint: "Tekan Enter untuk membuat paragraf baru.",
+            }
+          - { label: "Teks Visi", name: "visi", widget: "text" }
+          - label: "Daftar Misi"
+            name: "misi"
+            widget: "list"
+            fields:
+              - { label: "Teks Misi", name: "teks", widget: "string" }
+          - label: "Daftar Aparatur Desa"
+            name: "aparatur"
+            widget: "list"
+            summary: "{{fields.nama}} - {{fields.jabatan}}"
+            fields:
+              - { label: "Nama Aparatur", name: "nama", widget: "string" }
+              - { label: "Jabatan", name: "jabatan", widget: "string" }
+          - { label: "Alamat Kantor Desa", name: "alamat", widget: "text" }
+          - {
+              label: "Kode Embed Google Maps (iframe)",
+              name: "peta_embed",
+              widget: "string",
+              hint: "Salin kode HTML iframe dari Google Maps di sini",
+            }

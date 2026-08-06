@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import Pengumuman from '../components/Pengumuman.jsx';
 import dataStatistik from '../data/statistik.json';
+import dataBeranda from '../data/beranda.json';
 // Asumsi Anda memiliki komponen CardBerita, jika tidak, kode di bawah menggunakan HTML langsung
 // import CardBerita from '../components/CardBerita.astro';
 
@@ -13,9 +14,8 @@ const beritaTerbaru = semuaBerita.slice(0, 9);
 ---
 
 <Layout title="Beranda | Desa Muncangkopong">
-  <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
     <Pengumuman client:load />
-  </main>
   
   <!-- 1. HERO SECTION (Banner Utama) -->
   <section
@@ -129,39 +129,33 @@ const beritaTerbaru = semuaBerita.slice(0, 9);
 
   <!-- 3. SAMBUTAN KEPALA DESA & STATISTIK -->
   <section class="mb-20 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-    <!-- Sambutan Kades -->
-    <div
-      class="bg-linear-to-br from-emerald-50 to-white p-8 sm:p-10 rounded-3xl border border-emerald-100/50 shadow-sm relative overflow-hidden"
-    >
+    
+    <!-- KIRI: Sambutan Kades -->
+    <div class="bg-linear-to-br from-emerald-50 to-white p-8 sm:p-10 rounded-3xl border border-emerald-100/50 shadow-sm relative overflow-hidden h-full">
       <!-- Ornamen Dekorasi -->
       <div class="absolute -top-10 -right-10 text-9xl opacity-5">❞</div>
 
-      <div
-        class="flex flex-col sm:flex-row gap-6 items-center sm:items-start relative z-10"
-      >
+      <div class="flex flex-col sm:flex-row gap-6 items-center sm:items-start relative z-10">
         <img
-          src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=250"
+          src={dataBeranda.foto_kades || "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=250"}
           alt="Foto Kepala Desa"
           class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-full border-4 border-white shadow-lg"
         />
         <div class="text-center sm:text-left">
           <h2 class="text-2xl font-bold text-gray-900 mb-1">
-            Bapak Kepala Desa
+            {dataBeranda.nama_kades}
           </h2>
           <p class="text-emerald-600 font-semibold text-sm mb-4">
-            Kepala Desa Muncangkopong
+            {dataBeranda.jabatan}
           </p>
           <p class="text-gray-600 text-sm italic leading-relaxed mb-4">
-            "Puji syukur kehadirat Allah SWT, website resmi Desa Muncangkopong
-            ini hadir sebagai wujud komitmen kami dalam memberikan transparansi
-            informasi dan pelayanan publik yang cepat, mudah, dan modern kepada
-            seluruh warga masyarakat."
+            "{dataBeranda.sambutan}"
           </p>
         </div>
       </div>
     </div>
 
-    <!-- Statistik Singkat (Otomatis dari CMS) -->
+    <!-- KANAN: Statistik Singkat (Otomatis dari CMS) -->
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4 h-full">
       {dataStatistik.daftar_statistik.map((item) => (
         <div class="bg-white p-4 sm:p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-center items-center text-center hover:-translate-y-1 transition-transform duration-300">
@@ -171,6 +165,7 @@ const beritaTerbaru = semuaBerita.slice(0, 9);
         </div>
       ))}
     </div>
+    
   </section>
 
   <!-- 4. BERITA TERKINI -->
