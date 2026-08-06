@@ -47,3 +47,35 @@ collections:
           required: false,
         }
       - { label: "Isi Berita Lengkap", name: "body", widget: "markdown" }
+
+  - name: "pengaturan"
+    label: "Pengaturan Website"
+    files:
+      - label: "Statistik & Data Desa"
+        name: "statistik"
+        file: "src/data/statistik.json"
+        description: "Atur angka dan jumlah statistik desa yang tampil di Beranda"
+        fields:
+          - label: "Daftar Statistik"
+            name: "daftar_statistik"
+            widget: "list"
+            summary: "{{fields.label}} - {{fields.angka}}"
+            fields:
+              - {
+                  label: "Ikon (Emoji/Teks)",
+                  name: "ikon",
+                  widget: "string",
+                  default: "👥",
+                }
+              - {
+                  label: "Angka / Jumlah",
+                  name: "angka",
+                  widget: "string",
+                  default: "0",
+                }
+              - {
+                  label: "Nama / Keterangan",
+                  name: "label",
+                  widget: "string",
+                  default: "Keterangan Baru",
+                }

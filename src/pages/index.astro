@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import Pengumuman from '../components/Pengumuman.jsx';
+import dataStatistik from '../data/statistik.json';
 // Asumsi Anda memiliki komponen CardBerita, jika tidak, kode di bawah menggunakan HTML langsung
 // import CardBerita from '../components/CardBerita.astro';
 
@@ -11,6 +13,10 @@ const beritaTerbaru = semuaBerita.slice(0, 9);
 ---
 
 <Layout title="Beranda | Desa Muncangkopong">
+  <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Pengumuman client:load />
+  </main>
+  
   <!-- 1. HERO SECTION (Banner Utama) -->
   <section
     class="relative bg-emerald-900 rounded-3xl overflow-hidden mb-16 shadow-xl"
@@ -155,38 +161,15 @@ const beritaTerbaru = semuaBerita.slice(0, 9);
       </div>
     </div>
 
-    <!-- Statistik Singkat -->
-    <div class="grid grid-cols-2 gap-4 h-full">
-      <div
-        class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-center items-center text-center"
-      >
-        <span class="text-4xl mb-2">👥</span>
-        <h4 class="text-3xl font-black text-gray-900">3.250</h4>
-        <p class="text-gray-500 text-sm font-medium mt-1">Jiwa Penduduk</p>
-      </div>
-      <div
-        class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-center items-center text-center"
-      >
-        <span class="text-4xl mb-2">🏡</span>
-        <h4 class="text-3xl font-black text-gray-900">850</h4>
-        <p class="text-gray-500 text-sm font-medium mt-1">Kepala Keluarga</p>
-      </div>
-      <div
-        class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-center items-center text-center"
-      >
-        <span class="text-4xl mb-2">🏘️</span>
-        <h4 class="text-3xl font-black text-gray-900">4</h4>
-        <p class="text-gray-500 text-sm font-medium mt-1">Wilayah Dusun</p>
-      </div>
-      <div
-        class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-center items-center text-center"
-      >
-        <span class="text-4xl mb-2">📌</span>
-        <h4 class="text-3xl font-black text-gray-900">12</h4>
-        <p class="text-gray-500 text-sm font-medium mt-1">
-          Rukun Tetangga (RT)
-        </p>
-      </div>
+    <!-- Statistik Singkat (Otomatis dari CMS) -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4 h-full">
+      {dataStatistik.daftar_statistik.map((item) => (
+        <div class="bg-white p-4 sm:p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-center items-center text-center hover:-translate-y-1 transition-transform duration-300">
+          <span class="text-3xl sm:text-4xl mb-2">{item.ikon}</span>
+          <h4 class="text-2xl sm:text-3xl font-black text-gray-900">{item.angka}</h4>
+          <p class="text-gray-500 text-xs sm:text-sm font-medium mt-1 leading-tight">{item.label}</p>
+        </div>
+      ))}
     </div>
   </section>
 
