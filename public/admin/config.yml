@@ -2,18 +2,33 @@ backend:
   name: git-gateway
   branch: main
 
+local_backend: true
+
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
+
+site_url: "https://muncangkopong.desa.id"
+display_url: "https://muncangkopong.desa.id"
+logo_url: "/logo-kkm.png"
+
+locale: "id"
 
 collections:
   - name: "berita"
     label: "Berita Desa"
     folder: "src/content/berita"
     create: true
-    slug: "{{ year }}-{{ month }}-{{ day }}-{{ slug }}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Judul", name: "title", widget: "string" }
-      - { label: "Tanggal", name: "date", widget: "datetime" }
+      - { label: "Judul Berita", name: "title", widget: "string" }
+      - {
+          label: "Tanggal Publish",
+          name: "date",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+          date_format: "DD/MM/YYYY",
+          time_format: false,
+        }
       - {
           label: "Penulis",
           name: "author",
@@ -21,10 +36,14 @@ collections:
           default: "Admin Desa",
         }
       - {
-          label: "Foto Gambar",
+          label: "Deskripsi Singkat (Untuk Pratinjau/WhatsApp)",
+          name: "description",
+          widget: "text",
+        }
+      - {
+          label: "Foto Utama Berita",
           name: "image",
           widget: "image",
           required: false,
         }
-      - { label: "Ringkasan", name: "description", widget: "text" }
-      - { label: "Isi Konten", name: "body", widget: "markdown" }
+      - { label: "Isi Berita Lengkap", name: "body", widget: "markdown" }

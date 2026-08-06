@@ -1,12 +1,127 @@
-<footer class="bg-gray-900 text-gray-300 py-8 mt-16 border-t border-gray-800">
-  <div class="max-w-6xl mx-auto px-4 text-center">
-    <p class="font-medium text-gray-200 mb-1">
-      Pemerintahan Desa Muncangkopong
+---
+// src/components/Footer.astro
+---
+
+<!-- Tambahkan margin atas (mt-20) agar tidak menempel dengan konten di atasnya -->
+<footer class="bg-emerald-800 text-white mt-20 pt-16">
+  <!-- BAGIAN 1: CTA (Call to Action) "Mari Bersama Membangun Desa" -->
+  <div class="text-center px-4 max-w-4xl mx-auto mb-16">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+      Mari Bersama Membangun Desa
+    </h2>
+    <p
+      class="text-emerald-100 mb-8 text-sm md:text-base leading-relaxed max-w-2xl mx-auto"
+    >
+      Bergabunglah dengan kami dalam memajukan Desa Muncangkopong. Suara dan
+      partisipasi Anda sangat berarti bagi masa depan desa.
     </p>
-    <p class="text-xs text-gray-400">
-      &copy; 2026 Developed by <span class="text-emerald-400 font-semibold"
-        >KKM 82 BINA BANGSA</span
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+      <!-- Tombol Kiri (Putih) -->
+      <a
+        href="/kontak"
+        class="w-full sm:w-auto bg-white text-emerald-900 hover:bg-emerald-50 px-8 py-3.5 rounded-full font-bold transition-colors flex items-center justify-center gap-2 shadow-md"
       >
-    </p>
+        <span>📞</span> Hubungi Kami &rarr;
+      </a>
+      <!-- Tombol Kanan (Transparan bergaris) -->
+      <a
+        href="/kontak"
+        class="w-full sm:w-auto bg-emerald-700/50 border border-emerald-400 hover:bg-emerald-700 text-white px-8 py-3.5 rounded-full font-bold transition-colors flex items-center justify-center gap-2 shadow-sm"
+      >
+        <span>✉️</span> Layanan Desa
+      </a>
+    </div>
+  </div>
+
+  <!-- BAGIAN 2: Informasi Footer (Grid 3 Kolom) -->
+  <div
+    class="max-w-6xl mx-auto px-6 pb-12 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-emerald-700/50 pt-12"
+  >
+    <!-- Kolom 1: Identitas & Logo -->
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <!-- Lingkaran Inisial Logo (DM) -->
+        <div
+          class="bg-white text-emerald-800 w-12 h-12 rounded-full flex items-center justify-center font-black text-xl shadow-sm shrink-0"
+        >
+          DM
+        </div>
+        <div>
+          <h3 class="font-bold text-lg leading-tight">Desa Muncangkopong</h3>
+          <p class="text-xs text-emerald-300 mt-0.5">
+            Kec. Cikulur, Kab. Lebak
+          </p>
+        </div>
+      </div>
+      <p class="text-sm text-emerald-100/90 leading-relaxed pr-4">
+        Website resmi Pemerintahan Desa Muncangkopong. Pusat informasi publik,
+        transparansi kegiatan, dan layanan masyarakat desa secara digital.
+      </p>
+    </div>
+
+    <!-- Kolom 2: Kontak -->
+    <div>
+      <h4 class="font-bold mb-5 text-emerald-50 tracking-wider text-sm">
+        KONTAK
+      </h4>
+      <ul class="space-y-4 text-sm text-emerald-100/90">
+        <li class="flex items-start gap-3">
+          <span class="mt-0.5">📍</span>
+          <span class="leading-relaxed"
+            >Jl. Raya Muncangkopong No. 1, Kec. Cikulur, Kab. Lebak, Banten</span
+          >
+        </li>
+        <li class="flex items-center gap-3">
+          <span>✉️</span>
+          <span>pemdes@muncangkopong.desa.id</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <span>📞</span>
+          <span>+62 812-3456-7890</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Kolom 3: Link Terkait -->
+    <div>
+      <h4 class="font-bold mb-5 text-emerald-50 tracking-wider text-sm">
+        LINK TERKAIT
+      </h4>
+      <ul class="space-y-3 text-sm text-emerald-100/90 flex flex-col">
+        <li>
+          <a
+            href="/"
+            class="hover:text-white transition-colors flex items-center gap-2"
+            ><span class="text-emerald-500 text-xs">▶</span> Beranda</a>
+        </li>
+        <li>
+          <a
+            href="/profil"
+            class="hover:text-white transition-colors flex items-center gap-2"
+            ><span class="text-emerald-500 text-xs">▶</span> Profil Desa</a>
+        </li>
+        <li>
+          <a
+            href="/potensi"
+            class="hover:text-white transition-colors flex items-center gap-2"
+            ><span class="text-emerald-500 text-xs">▶</span> Galeri & Potensi</a>
+        </li>
+        <li>
+          <a
+            href="/berita"
+            class="hover:text-white transition-colors flex items-center gap-2"
+            ><span class="text-emerald-500 text-xs">▶</span> Berita Terkini</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- BAGIAN 3: Copyright -->
+  <div
+    class="bg-emerald-950 py-5 text-center text-xs text-emerald-400/80 border-t border-emerald-900"
+  >
+    &copy; 2026 Pemerintah Desa Muncangkopong. Developed by <span
+      class="font-bold text-emerald-300">KKM 82 BINA BANGSA</span
+    >.
   </div>
 </footer>

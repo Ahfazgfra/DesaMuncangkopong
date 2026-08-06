@@ -1,9 +1,24 @@
 ---
+// src/layouts/Layout.astro
+
+// 1. KITA PANGGIL KEMBALI NAVBAR, FOOTER & CSS (Ini yang sebelumnya terhapus)
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+// Pastikan baris di bawah ini sesuai dengan letak file CSS Tailwind Anda
+// Biasanya ada di dalam folder styles atau langsung di src
 import "../styles/global.css";
 
-const { title } = Astro.props;
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "Desa Muncangkopong - Website Resmi",
+  description = "Website resmi Pemerintahan Desa Muncangkopong, Kecamatan Cikulur, Kabupaten Lebak. Pusat informasi publik dan layanan masyarakat.",
+  image = "/logo-kkm.png",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -11,17 +26,36 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} | Website Resmi Desa Muncangkopong</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- SEO Dasar -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / WhatsApp / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:site_name" content="Pemerintahan Desa Muncangkopong" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.url)} />
   </head>
-  <body
-    class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between"
-  >
-    <div>
-      <Navbar />
-      <main class="max-w-6xl mx-auto px-4 py-8">
-        <slot />
-      </main>
-    </div>
+  <body class="bg-gray-50 flex flex-col min-h-screen">
+    <!-- Memanggil Komponen Navbar -->
+    <Navbar />
+
+    <!-- Konten Utama Halaman -->
+    <main class="grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <slot />
+    </main>
+
+    <!-- Memanggil Komponen Footer Terkini -->
     <Footer />
   </body>
 </html>
