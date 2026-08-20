@@ -26,7 +26,7 @@ Di sela kegiatan, mahasiswa juga mengajak para ibu berdiskusi mengenai pentingny
 
 Dalam edukasi tersebut, mahasiswa menekankan bahwa pencegahan **stunting** tidak selalu memerlukan biaya besar.
 
-> “Pencegahan stunting tidak selalu membutuhkan biaya mahal, melainkan ketepatan pemilihan nutrisi serta pola asuh gizi yang konsisten sejak masa kehamilan hingga anak berusia dua tahun,” demikian penjelasan yang disampaikan mahasiswa kepada para peserta dalam kegiatan edukasi.
+> *“Pencegahan stunting tidak selalu membutuhkan biaya mahal, melainkan ketepatan pemilihan nutrisi serta pola asuh gizi yang konsisten sejak masa kehamilan hingga anak berusia dua tahun,”* demikian penjelasan yang disampaikan mahasiswa kepada para peserta dalam kegiatan edukasi.
 
 Kader PKK Desa Muncang Kopong menyambut positif kolaborasi tersebut. Mereka menilai variasi menu PMT yang diperkenalkan mahasiswa dapat menjadi referensi dalam penyelenggaraan kegiatan Posyandu maupun program pemberian makanan tambahan di tingkat desa.
 
