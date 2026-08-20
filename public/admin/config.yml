@@ -1,8 +1,7 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Ahfazgfra/DesaMuncangkopong # Sesuaikan dengan repo Anda
   branch: main
-
-local_backend: true
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
@@ -131,3 +130,34 @@ collections:
               widget: "string",
               hint: "Salin kode HTML iframe dari Google Maps di sini",
             }
+
+  - name: "umkm"
+    label: "Produk UMKM"
+    folder: "src/content/umkm"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    fields:
+      - { label: "Nama Produk", name: "title", widget: "string" }
+      - { label: "Nama Penjual", name: "penjual", widget: "string" }
+      - { label: "Foto Produk", name: "image", widget: "image" }
+      - {
+          label: "Harga (Contoh: Mulai Rp 25.000)",
+          name: "harga",
+          widget: "string",
+        }
+      - { label: "Deskripsi Singkat", name: "description", widget: "text" }
+      - {
+          label: "Nomor WhatsApp (Gunakan awalan 62, misal: 62812xxx)",
+          name: "whatsapp",
+          widget: "string",
+          required: false,
+        }
+
+  - name: "galeri"
+    label: "Galeri Kegiatan"
+    folder: "src/content/galeri"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    fields:
+      - { label: "Judul/Deskripsi Foto", name: "title", widget: "string" }
+      - { label: "Foto Kegiatan", name: "image", widget: "image" }
