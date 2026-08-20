@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-// 1. Tarik data dari folder CMS yang dibuat lewat dashboard Admin
 const dataUMKM = Object.values(
   import.meta.glob("../content/umkm/*.md", { eager: true }),
 ) as any[];

@@ -4,12 +4,9 @@ import { getCollection } from "astro:content";
 import Pengumuman from '../components/Pengumuman.jsx';
 import dataStatistik from '../data/statistik.json';
 import dataBeranda from '../data/beranda.json';
-// Asumsi Anda memiliki komponen CardBerita, jika tidak, kode di bawah menggunakan HTML langsung
 // import CardBerita from '../components/CardBerita.astro';
 
-// Mengambil data berita untuk ditampilkan di beranda (Maksimal 3 terbaru)
 const semuaBerita = await getCollection("berita");
-// Jika di content collection Anda ada field 'tanggal', gunakan sort. Jika tidak, cukup slice(0,3)
 const beritaTerbaru = semuaBerita.slice(0, 9);
 ---
 

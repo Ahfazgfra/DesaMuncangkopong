@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Ahfazgfra/DesaMuncangkopong # Sesuaikan dengan repo Anda
+  repo: Ahfazgfra/DesaMuncangkopong
   branch: main
 
 media_folder: "public/images/uploads"
