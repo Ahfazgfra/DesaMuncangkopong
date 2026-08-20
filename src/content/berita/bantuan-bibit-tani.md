@@ -12,7 +12,7 @@ Program tersebut dilaksanakan di SDN 02 Muncangkopong dengan memperkenalkan **E
 
 Dalam kegiatan penutup program, mahasiswa KKM 82 tidak hanya mempresentasikan inovasi Eco-Press, tetapi juga memperagakan cara penggunaannya di hadapan siswa dan guru. Kegiatan berlangsung dengan antusias karena siswa mendapat kesempatan melihat secara langsung penerapan teknologi sederhana dalam pengelolaan sampah.
 
-erwakilan KKM 82 mengatakan program tersebut diharapkan tidak berhenti setelah mahasiswa menyelesaikan kegiatan di sekolah.
+Perwakilan KKM 82 mengatakan program tersebut diharapkan tidak berhenti setelah mahasiswa menyelesaikan kegiatan di sekolah.
 
 “Selesainya program kerja di SDN 02 Muncangkopong ini diharapkan dapat meninggalkan manfaat yang berkelanjutan. Melalui alat Eco-Press yang kami serahkan hari ini, kami ingin menumbuhkan kebiasaan mengelola sampah secara cerdas dan kreatif bagi adik-adik di sini,” ujar perwakilan KKM 82 dalam sambutannya.
 
@@ -33,7 +33,6 @@ Pihak SDN 02 Muncangkopong menyampaikan apresiasi terhadap program yang dijalank
 ### **Pendidikan Lingkungan Sejak Sekolah Dasar**
 
 Program Eco-Press menempatkan siswa sebagai bagian dari proses edukasi mengenai persoalan sampah. Pengenalan pengelolaan sampah sejak tingkat sekolah dasar menjadi bagian penting agar kebiasaan menjaga kebersihan lingkungan tidak hanya dipahami sebagai kewajiban, tetapi juga diterapkan dalam aktivitas sehari-hari.
-
 
 Bagi KKM 82, penyelesaian program di SDN 02 Muncangkopong menjadi salah satu capaian dalam rangkaian pengabdian di Desa Muncangkopong. Kegiatan tersebut sekaligus mempertemukan aspek pendidikan dengan persoalan lingkungan yang ditemui di sekitar sekolah.
 
