@@ -1,5 +1,5 @@
 ---
-title: "Keripik "
+title: Keripik Magadir
 penjual: LILLY Muncangkopong
 image: /images/uploads/keripik-magadir.jpeg
 harga: Rp 25.000
