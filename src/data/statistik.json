@@ -29,6 +29,11 @@
       "ikon": "🕌",
       "angka": "23",
       "label": "Tempat Ibadah"
+    },
+    {
+      "ikon": "🏥",
+      "angka": "6",
+      "label": "Kesehatan"
     }
   ]
 }
