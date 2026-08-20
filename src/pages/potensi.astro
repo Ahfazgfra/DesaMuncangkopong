@@ -1,370 +1,341 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-// Data UMKM dengan tambahan ID, Deskripsi Lengkap, dan Galeri (Banyak Foto)
-const umkmDesa = [
-  {
-    id: "umkm-1",
-    nama: "Kerajinan Anyaman Bambu",
-    pemilik: "Pak Sugeng (Dusun 1)",
-    deskripsiSingkat: "Anyaman bambu berkualitas tinggi untuk perabotan rumah tangga dan hiasan.",
-    deskripsiLengkap: "Produk anyaman bambu asli buatan tangan warga Dusun 1. Dibuat menggunakan bambu pilihan yang sudah dikeringkan sehingga awet dan anti rayap. Tersedia berbagai macam bentuk mulai dari tampah, bakul, keranjang, hingga hiasan dinding estetik. Menerima pesanan dalam jumlah besar untuk acara pernikahan atau suvenir.",
-    harga: "Mulai Rp 25.000",
-    wa: "6281234567890",
-    gambarUtama: "https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&q=80&w=600",
-    galeri: [
-      "https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1513506003901-1e6a229e9d15?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=600"
-    ]
-  },
-  {
-    id: "umkm-2",
-    nama: "Kripik Pisang Muncang Rasa",
-    pemilik: "Ibu Siti (Dusun 2)",
-    deskripsiSingkat: "Camilan renyah khas desa dari pisang kepok pilihan dengan berbagai varian rasa.",
-    deskripsiLengkap: "Camilan andalan Desa Muncangkopong! Terbuat dari pisang kepok kuning hasil panen kebun warga lokal yang diiris tipis dan digoreng dengan suhu pas sehingga sangat renyah. Bebas pengawet dan menggunakan pemanis alami. Tersedia dalam varian rasa: Original, Cokelat Lumer, Balado, dan Keju Manis.",
-    harga: "Rp 15.000 / bungkus",
-    wa: "6281234567890",
-    gambarUtama: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=600",
-    galeri: [
-      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1621852004158-f3bc188aec27?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&q=80&w=600"
-    ]
-  },
-  {
-    id: "umkm-3",
-    nama: "Madu Hutan Asli Cikulur",
-    pemilik: "Kelompok Tani Lestari",
-    deskripsiSingkat: "Madu murni hasil lebah liar hutan sekitar desa, tanpa campuran pemanis buatan.",
-    deskripsiLengkap: "Madu hutan 100% murni dan mentah (raw honey) yang dipanen langsung oleh Kelompok Tani Lestari dari hutan di wilayah Cikulur. Kaya akan antioksidan, vitamin, dan mineral. Sangat baik untuk menjaga imunitas tubuh, meredakan batuk, serta sebagai pengganti gula yang sehat. Dikemas higienis dalam botol kaca.",
-    harga: "Rp 75.000 / botol",
-    wa: "6281234567890",
-    gambarUtama: "https://images.unsplash.com/photo-1587049352847-4a222e784d38?auto=format&fit=crop&q=80&w=600",
-    galeri: [
-      "https://images.unsplash.com/photo-1587049352847-4a222e784d38?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1559598467-f8b76c8155d0?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1616428695029-23cbf9062eb8?auto=format&fit=crop&q=80&w=600"
-    ]
-  }
-];
-
-const galeriKegiatan = [
-  { judul: "Kerja Bakti Membersihkan Jalan Desa", gambar: "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=800" },
-  { judul: "Pembibitan Tanaman oleh Ibu-ibu PKK", gambar: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800" },
-  { judul: "Keceriaan Anak-Anak Desa Bermain", gambar: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=800" },
-  { judul: "Suasana Jalan Desa di Malam Hari", gambar: "https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?auto=format&fit=crop&q=80&w=800" },
-  { judul: "Gotong Royong Perbaikan Balai Desa", gambar: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=800" },
-  { judul: "Kegiatan Posyandu Bulanan", gambar: "https://images.unsplash.com/photo-1574607383476-f517f260d30b?auto=format&fit=crop&q=80&w=800" }
-];
+// 1. Tarik data dari folder CMS yang dibuat lewat dashboard Admin
+const dataUMKM = Object.values(
+  import.meta.glob("../content/umkm/*.md", { eager: true }),
+) as any[];
+const dataGaleri = Object.values(
+  import.meta.glob("../content/galeri/*.md", { eager: true }),
+) as any[];
 ---
 
 <Layout title="Potensi & Galeri">
   <!-- Hero Banner -->
-  <section class="bg-linear-to-r from-emerald-800 to-emerald-600 rounded-3xl p-8 sm:p-12 mb-12 text-center text-white shadow-lg">
-    <h1 class="text-3xl sm:text-5xl font-extrabold mb-4">Potensi & Galeri Desa</h1>
-    <p class="text-emerald-100 text-base sm:text-lg max-w-2xl mx-auto font-light">
-      Membangun ekonomi kreatif melalui produk UMKM unggulan dan merekam jejak kegiatan masyarakat Desa Muncangkopong.
+  <section
+    class="bg-linear-to-r from-emerald-800 to-emerald-600 rounded-3xl p-8 sm:p-12 mb-12 text-center text-white shadow-lg"
+  >
+    <h1 class="text-3xl sm:text-5xl font-extrabold mb-4">
+      Potensi & Galeri Desa
+    </h1>
+    <p
+      class="text-emerald-100 text-base sm:text-lg max-w-2xl mx-auto font-light"
+    >
+      Membangun ekonomi kreatif melalui produk UMKM unggulan dan merekam jejak
+      kegiatan masyarakat Desa Muncangkopong.
     </p>
   </section>
 
   <!-- SEKSI 1: UMKM LOKAL (GRID CARDS) -->
   <section class="mb-16 relative">
     <div class="text-center max-w-2xl mx-auto mb-10">
-      <h2 class="text-3xl font-extrabold text-gray-900 mb-3">🛍️ Produk Unggulan & UMKM</h2>
+      <h2 class="text-3xl font-extrabold text-gray-900 mb-3">
+        🛍️ Produk Unggulan & UMKM
+      </h2>
       <p class="text-gray-600 text-sm sm:text-base">
-        Dukung perekonomian warga desa dengan membeli produk lokal langsung dari perajin dan petani Desa Muncangkopong.
+        Dukung perekonomian warga desa dengan membeli produk lokal langsung dari
+        perajin dan petani Desa Muncangkopong.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {umkmDesa.map((item) => (
-        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition flex flex-col justify-between group">
-          <!-- Area Card yang bisa diklik untuk membuka modal -->
-          <div 
-            class="cursor-pointer" 
-            onclick={`bukaModal('${item.id}')`}
-            title="Klik untuk lihat detail"
-          >
-            <div class="relative overflow-hidden">
-              <img 
-                src={item.gambarUtama} 
-                alt={item.nama} 
-                class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" 
-                onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Gambar+Tidak+Tersedia';"
-              />
-              <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+      {/* 2. Gunakan dataUMKM dari CMS di sini */}
+      {
+        dataUMKM.map((item, index) => (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition flex flex-col justify-between group">
+            <div
+              class="cursor-pointer"
+              onclick={`bukaModal('umkm-${index}')`}
+              title="Klik untuk lihat detail"
+            >
+              <div class="relative overflow-hidden">
+                <img
+                  src={item.frontmatter.image}
+                  alt={item.frontmatter.title}
+                  class="w-full h-56 object-cover group-hover:scale-105 transition duration-300"
+                  onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Gambar+Tidak+Tersedia';"
+                />
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition" />
+              </div>
+
+              <div class="p-6 pb-2">
+                <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
+                  {item.frontmatter.penjual}
+                </span>
+                <h3 class="text-xl font-bold text-gray-900 mt-4 mb-2 group-hover:text-emerald-600 transition">
+                  {item.frontmatter.title}
+                </h3>
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                  {item.frontmatter.description}
+                </p>
+                <div class="text-lg font-extrabold text-emerald-600 mb-2">
+                  {item.frontmatter.harga}
+                </div>
+              </div>
             </div>
-            
-            <div class="p-6 pb-2">
-              <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
-                {item.pemilik}
-              </span>
-              <h3 class="text-xl font-bold text-gray-900 mt-4 mb-2 group-hover:text-emerald-600 transition">{item.nama}</h3>
-              <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">{item.deskripsiSingkat}</p>
-              <div class="text-lg font-extrabold text-emerald-600 mb-2">{item.harga}</div>
+
+            <div class="px-6 pb-6 pt-2 flex flex-col gap-2">
+              <button
+                onclick={`bukaModal('umkm-${index}')`}
+                class="w-full bg-white border-2 border-emerald-600 text-emerald-700 font-bold py-2.5 px-4 rounded-xl hover:bg-emerald-50 transition text-sm flex items-center justify-center gap-2"
+              >
+                <span>🔍 Lihat Detail & Foto</span>
+              </button>
+              <a
+                href={`https://wa.me/${item.frontmatter.whatsapp}?text=Halo%20${encodeURIComponent(item.frontmatter.penjual)},%20saya%20tertarik%20membeli%20produk%20${encodeURIComponent(item.frontmatter.title)}%20dari%20website%20desa.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition shadow-sm text-sm"
+              >
+                <span>💬 Pesan Langsung</span>
+              </a>
             </div>
           </div>
-          
-          <div class="px-6 pb-6 pt-2 flex flex-col gap-2">
-            <button
-              onclick={`bukaModal('${item.id}')`}
-              class="w-full bg-white border-2 border-emerald-600 text-emerald-700 font-bold py-2.5 px-4 rounded-xl hover:bg-emerald-50 transition text-sm flex items-center justify-center gap-2"
-            >
-              <span>🔍 Lihat Detail & Foto</span>
-            </button>
-            <a
-              href={`https://wa.me/${item.wa}?text=Halo%20${encodeURIComponent(item.pemilik)},%20saya%20tertarik%20membeli%20produk%20${encodeURIComponent(item.nama)}%20dari%20website%20desa.`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition shadow-sm text-sm"
-            >
-              <span>💬 Pesan Langsung</span>
-            </a>
-          </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </section>
 
   <!-- ========================================== -->
   <!-- KUMPULAN MODAL POP-UP (Tersembunyi di awal) -->
   <!-- ========================================== -->
-  {umkmDesa.map((item) => (
-    <div id={`modal-${item.id}`} class="fixed inset-0 z-100 hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300">
-      <!-- Latar Belakang Gelap (Backdrop) -->
-      <div class="absolute inset-0 bg-black/70 backdrop-blur-sm cursor-pointer" onclick={`tutupModal('${item.id}')`}></div>
-      
-      <!-- Kotak Modal -->
-      <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col md:flex-row scale-95 transition-transform duration-300" id={`modal-content-${item.id}`}>
-        
-        <!-- Tombol Close (X) -->
-        <button 
-          onclick={`tutupModal('${item.id}')`}
-          class="absolute top-4 right-4 z-10 bg-white/80 hover:bg-red-100 text-gray-700 hover:text-red-600 w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md transition shadow-sm"
+  {
+    dataUMKM.map((item, index) => (
+      <div
+        id={`modal-umkm-${index}`}
+        class="fixed inset-0 z-100 hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300"
+      >
+        <div
+          class="absolute inset-0 bg-black/70 backdrop-blur-sm cursor-pointer"
+          onclick={`tutupModal('umkm-${index}')`}
+        />
+
+        <div
+          class="relative bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col md:flex-row scale-95 transition-transform duration-300"
+          id={`modal-content-umkm-${index}`}
         >
-          <span class="text-xl font-bold">&times;</span>
-        </button>
-
-        <!-- Bagian Kiri: Galeri Foto -->
-        <div class="w-full md:w-1/2 bg-gray-50 p-6 flex flex-col gap-4">
-          <!-- Foto Utama -->
-          <img 
-            id={`main-img-${item.id}`}
-            src={item.galeri[0]} 
-            alt={item.nama} 
-            class="w-full h-64 sm:h-80 object-cover rounded-2xl shadow-sm border border-gray-200"
-          />
-          
-          <!-- Thumbnail Foto (Bisa diklik untuk ganti foto utama) -->
-          <div class="flex gap-3 overflow-x-auto pb-2">
-            {item.galeri.map((imgSrc) => (
-              <img 
-                src={imgSrc} 
-                alt="Thumbnail" 
-                class="w-20 h-20 object-cover rounded-xl border-2 border-transparent hover:border-emerald-500 cursor-pointer opacity-70 hover:opacity-100 transition shadow-sm shrink-0"
-                onclick={`document.getElementById('main-img-${item.id}').src = '${imgSrc}'`}
-              />
-            ))}
-          </div>
-        </div>
-
-        <!-- Bagian Kanan: Detail Informasi -->
-        <div class="w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-between">
-          <div>
-            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full mb-4">
-              UMKM Desa Muncangkopong
-            </span>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2 leading-tight">{item.nama}</h2>
-            <p class="text-sm font-medium text-gray-500 mb-6 border-b border-gray-100 pb-4">
-              Oleh: <span class="text-gray-900">{item.pemilik}</span>
-            </p>
-            
-            <div class="mb-6">
-              <h4 class="text-sm font-bold text-gray-900 mb-2">Deskripsi Produk:</h4>
-              <p class="text-gray-700 text-sm leading-relaxed text-justify">
-                {item.deskripsiLengkap}
-              </p>
-            </div>
-            
-            <div class="mb-8">
-              <h4 class="text-sm font-bold text-gray-900 mb-1">Harga:</h4>
-              <div class="text-3xl font-black text-emerald-600">{item.harga}</div>
-            </div>
-          </div>
-
-          <a
-            href={`https://wa.me/${item.wa}?text=Halo%20${encodeURIComponent(item.pemilik)},%20saya%20melihat%20produk%20${encodeURIComponent(item.nama)}%20di%20website%20desa.%20Apakah%20masih%20tersedia?`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-2xl flex items-center justify-center gap-3 transition shadow-md hover:shadow-lg text-lg"
+          <button
+            onclick={`tutupModal('umkm-${index}')`}
+            class="absolute top-4 right-4 z-10 bg-white/80 hover:bg-red-100 text-gray-700 hover:text-red-600 w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md transition shadow-sm"
           >
-            <span class="text-2xl">💬</span> Pesan Sekarang via WhatsApp
-          </a>
-        </div>
+            <span class="text-xl font-bold">&times;</span>
+          </button>
 
+          <div class="w-full md:w-1/2 bg-gray-50 p-6 flex flex-col gap-4">
+            <img
+              src={item.frontmatter.image}
+              alt={item.frontmatter.title}
+              class="w-full h-64 sm:h-80 object-cover rounded-2xl shadow-sm border border-gray-200"
+            />
+          </div>
+
+          <div class="w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-between">
+            <div>
+              <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full mb-4">
+                UMKM Desa Muncangkopong
+              </span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2 leading-tight">
+                {item.frontmatter.title}
+              </h2>
+              <p class="text-sm font-medium text-gray-500 mb-6 border-b border-gray-100 pb-4">
+                Oleh:{" "}
+                <span class="text-gray-900">{item.frontmatter.penjual}</span>
+              </p>
+
+              <div class="mb-6">
+                <h4 class="text-sm font-bold text-gray-900 mb-2">
+                  Deskripsi Produk:
+                </h4>
+                <p class="text-gray-700 text-sm leading-relaxed text-justify">
+                  {item.frontmatter.description}
+                </p>
+              </div>
+
+              <div class="mb-8">
+                <h4 class="text-sm font-bold text-gray-900 mb-1">Harga:</h4>
+                <div class="text-3xl font-black text-emerald-600">
+                  {item.frontmatter.harga}
+                </div>
+              </div>
+            </div>
+
+            <a
+              href={`https://wa.me/${item.frontmatter.whatsapp}?text=Halo%20${encodeURIComponent(item.frontmatter.penjual)},%20saya%20melihat%20produk%20${encodeURIComponent(item.frontmatter.title)}%20di%20website%20desa.%20Apakah%20masih%20tersedia?`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-2xl flex items-center justify-center gap-3 transition shadow-md hover:shadow-lg text-lg"
+            >
+              <span class="text-2xl">💬</span> Pesan via WhatsApp
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  ))}
+    ))
+  }
 
   <!-- SEKSI 2: GALERI KEGIATAN -->
-  <section class="bg-white p-8 sm:p-12 rounded-3xl border border-gray-100 shadow-sm mb-12">
-    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
+  <section
+    class="bg-white p-8 sm:p-12 rounded-3xl border border-gray-100 shadow-sm mb-12"
+  >
+    <div
+      class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4"
+    >
       <div>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">📸 Galeri Kegiatan Warga</h2>
-        <p class="text-gray-600 text-sm">Dokumentasi gotong royong, pembangunan, dan acara kebudayaan desa.</p>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">
+          📸 Galeri Kegiatan Warga
+        </h2>
+        <p class="text-gray-600 text-sm">
+          Dokumentasi gotong royong, pembangunan, dan acara kebudayaan desa.
+        </p>
       </div>
-      <!-- Tombol Navigasi Slider Kiri & Kanan -->
       <div class="flex gap-2">
-        <button onclick="geserGaleri(-1)" class="bg-gray-100 hover:bg-emerald-100 text-gray-700 hover:text-emerald-700 w-12 h-12 rounded-full flex items-center justify-center transition shadow-sm">
+        <button
+          onclick="geserGaleri(-1)"
+          class="bg-gray-100 hover:bg-emerald-100 text-gray-700 hover:text-emerald-700 w-12 h-12 rounded-full flex items-center justify-center transition shadow-sm"
+        >
           <span class="text-xl font-bold">&larr;</span>
         </button>
-        <button onclick="geserGaleri(1)" class="bg-gray-100 hover:bg-emerald-100 text-gray-700 hover:text-emerald-700 w-12 h-12 rounded-full flex items-center justify-center transition shadow-sm">
+        <button
+          onclick="geserGaleri(1)"
+          class="bg-gray-100 hover:bg-emerald-100 text-gray-700 hover:text-emerald-700 w-12 h-12 rounded-full flex items-center justify-center transition shadow-sm"
+        >
           <span class="text-xl font-bold">&rarr;</span>
         </button>
       </div>
     </div>
 
-    <!-- Wadah Slider (Bisa di-swipe di HP, diklik tombol di PC) -->
-    <div 
-      id="slider-galeri" 
+    <div
+      id="slider-galeri"
       class="flex overflow-x-auto gap-5 snap-x snap-mandatory scroll-smooth pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-width:none"
     >
-      {galeriKegiatan.map((item) => (
-        <div 
-          class="snap-start shrink-0 w-70 sm:w-[320px] group relative overflow-hidden rounded-2xl aspect-4/3 bg-gray-200 cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
-          onclick={`bukaFotoBesar('${item.gambar}', '${item.judul}')`}
-        >
-          <img
-            src={item.gambar}
-            alt={item.judul}
-            class="w-full h-full object-cover group-hover:scale-110 transition duration-500 ease-in-out"
-          />
-          <!-- Gradasi Hitam dan Judul (Muncul saat di-hover) -->
-          <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-5">
-            <span class="text-white text-base font-bold leading-tight mb-1">{item.judul}</span>
-            <span class="text-emerald-300 text-xs font-medium">Lihat Foto &rarr;</span>
+      {/* 3. Gunakan dataGaleri dari CMS di sini */}
+      {
+        dataGaleri.map((item) => (
+          <div
+            class="snap-start shrink-0 w-70 sm:w-[320px] group relative overflow-hidden rounded-2xl aspect-4/3 bg-gray-200 cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
+            onclick={`bukaFotoBesar('${item.frontmatter.image}', '${item.frontmatter.title}')`}
+          >
+            <img
+              src={item.frontmatter.image}
+              alt={item.frontmatter.title}
+              class="w-full h-full object-cover group-hover:scale-110 transition duration-500 ease-in-out"
+            />
+            <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-5">
+              <span class="text-white text-base font-bold leading-tight mb-1">
+                {item.frontmatter.title}
+              </span>
+              <span class="text-emerald-300 text-xs font-medium">
+                Lihat Foto &rarr;
+              </span>
+            </div>
+            <div class="absolute top-4 right-4 bg-black/30 backdrop-blur-md w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+              <span class="text-white text-sm">🔍</span>
+            </div>
           </div>
-          <!-- Ikon Kaca Pembesar di Kanan Atas -->
-          <div class="absolute top-4 right-4 bg-black/30 backdrop-blur-md w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-            <span class="text-white text-sm">🔍</span>
-          </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </section>
 
   <!-- POP-UP (LIGHTBOX) KHUSUS UNTUK GALERI -->
-  <div id="lightbox-galeri" class="fixed inset-0 z-200 hidden items-center justify-center p-4 sm:p-8 opacity-0 transition-opacity duration-300">
-    <!-- Latar Hitam Blur -->
-    <div class="absolute inset-0 bg-black/95 backdrop-blur-md cursor-pointer" onclick="tutupFotoBesar()"></div>
-    
-    <!-- Tombol Tutup (X) -->
-    <button 
+  <div
+    id="lightbox-galeri"
+    class="fixed inset-0 z-200 hidden items-center justify-center p-4 sm:p-8 opacity-0 transition-opacity duration-300"
+  >
+    <div
+      class="absolute inset-0 bg-black/95 backdrop-blur-md cursor-pointer"
+      onclick="tutupFotoBesar()"
+    >
+    </div>
+    <button
       onclick="tutupFotoBesar()"
       class="absolute top-4 right-4 md:top-8 md:right-8 z-10 bg-white/10 hover:bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-md transition shadow-lg"
     >
       <span class="text-2xl font-bold">&times;</span>
     </button>
-
-    <!-- Konten Foto Besar -->
-    <div class="relative z-10 max-w-5xl w-full flex flex-col items-center scale-95 transition-transform duration-300" id="lightbox-content">
-      <img id="lightbox-img" src="" alt="Detail Kegiatan" class="max-w-full max-h-[75vh] rounded-xl shadow-2xl object-contain border border-gray-700/50" />
-      <div class="bg-black/50 backdrop-blur-md px-6 py-3 rounded-full mt-6 border border-gray-700">
-        <p id="lightbox-caption" class="text-white text-base md:text-xl font-medium text-center"></p>
+    <div
+      class="relative z-10 max-w-5xl w-full flex flex-col items-center scale-95 transition-transform duration-300"
+      id="lightbox-content"
+    >
+      <img
+        id="lightbox-img"
+        src=""
+        alt="Detail Kegiatan"
+        class="max-w-full max-h-[75vh] rounded-xl shadow-2xl object-contain border border-gray-700/50"
+      />
+      <div
+        class="bg-black/50 backdrop-blur-md px-6 py-3 rounded-full mt-6 border border-gray-700"
+      >
+        <p
+          id="lightbox-caption"
+          class="text-white text-base md:text-xl font-medium text-center"
+        >
+        </p>
       </div>
     </div>
   </div>
-
 </Layout>
 
-<!-- Script untuk Menjalankan Pop-up Modal -->
 <script is:inline>
-  // Fungsi Buka Modal
   function bukaModal(id) {
     const modal = document.getElementById(`modal-${id}`);
     const modalContent = document.getElementById(`modal-content-${id}`);
-    
-    // Tampilkan modal
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    
-    // Cegah body website di-scroll saat pop up terbuka
-    document.body.style.overflow = 'hidden';
-
-    // Animasi masuk
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    document.body.style.overflow = "hidden";
     setTimeout(() => {
-      modal.classList.remove('opacity-0');
-      modalContent.classList.remove('scale-95');
-      modalContent.classList.add('scale-100');
+      modal.classList.remove("opacity-0");
+      modalContent.classList.remove("scale-95");
+      modalContent.classList.add("scale-100");
     }, 10);
   }
 
-  // Fungsi Tutup Modal
   function tutupModal(id) {
     const modal = document.getElementById(`modal-${id}`);
     const modalContent = document.getElementById(`modal-content-${id}`);
-    
-    // Animasi keluar
-    modal.classList.add('opacity-0');
-    modalContent.classList.remove('scale-100');
-    modalContent.classList.add('scale-95');
-    
-    // Sembunyikan modal setelah animasi selesai
+    modal.classList.add("opacity-0");
+    modalContent.classList.remove("scale-100");
+    modalContent.classList.add("scale-95");
     setTimeout(() => {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      // Kembalikan scroll body website
-      document.body.style.overflow = 'auto';
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "auto";
     }, 300);
   }
 
   function geserGaleri(arah) {
-    const slider = document.getElementById('slider-galeri');
-    // Bergeser sejauh 340px (lebar 1 gambar + gap)
+    const slider = document.getElementById("slider-galeri");
     const jarakGeser = 340 * arah;
-    slider.scrollBy({ left: jarakGeser, behavior: 'smooth' });
+    slider.scrollBy({ left: jarakGeser, behavior: "smooth" });
   }
 
-  // --- FUNGSI UNTUK LIGHTBOX (POP-UP FOTO GALERI) ---
   function bukaFotoBesar(src, judul) {
-    const lightbox = document.getElementById('lightbox-galeri');
-    const lightboxContent = document.getElementById('lightbox-content');
-    const img = document.getElementById('lightbox-img');
-    const caption = document.getElementById('lightbox-caption');
-
-    // Masukkan data gambar dan judul yang diklik
+    const lightbox = document.getElementById("lightbox-galeri");
+    const lightboxContent = document.getElementById("lightbox-content");
+    const img = document.getElementById("lightbox-img");
+    const caption = document.getElementById("lightbox-caption");
     img.src = src;
     caption.textContent = judul;
-
-    // Tampilkan pop-up
-    lightbox.classList.remove('hidden');
-    lightbox.classList.add('flex');
-    document.body.style.overflow = 'hidden';
-
-    // Animasi masuk
+    lightbox.classList.remove("hidden");
+    lightbox.classList.add("flex");
+    document.body.style.overflow = "hidden";
     setTimeout(() => {
-      lightbox.classList.remove('opacity-0');
-      lightboxContent.classList.remove('scale-95');
-      lightboxContent.classList.add('scale-100');
+      lightbox.classList.remove("opacity-0");
+      lightboxContent.classList.remove("scale-95");
+      lightboxContent.classList.add("scale-100");
     }, 10);
   }
 
   function tutupFotoBesar() {
-    const lightbox = document.getElementById('lightbox-galeri');
-    const lightboxContent = document.getElementById('lightbox-content');
-
-    // Animasi keluar
-    lightbox.classList.add('opacity-0');
-    lightboxContent.classList.remove('scale-100');
-    lightboxContent.classList.add('scale-95');
-
-    // Sembunyikan setelah animasi selesai
+    const lightbox = document.getElementById("lightbox-galeri");
+    const lightboxContent = document.getElementById("lightbox-content");
+    lightbox.classList.add("opacity-0");
+    lightboxContent.classList.remove("scale-100");
+    lightboxContent.classList.add("scale-95");
     setTimeout(() => {
-      lightbox.classList.add('hidden');
-      lightbox.classList.remove('flex');
-      document.body.style.overflow = 'auto';
+      lightbox.classList.add("hidden");
+      lightbox.classList.remove("flex");
+      document.body.style.overflow = "auto";
     }, 300);
   }
 </script>
